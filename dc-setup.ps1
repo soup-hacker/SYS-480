@@ -8,7 +8,7 @@ $IPv4Prefix = "24"
 $IPv4GW = "10.0.17.2"
 $IPv4DNS = "10.0.17.2"
 
-# Defining Domain & DNS info
+# DNS info
 $NetworkID = "10.0.17.0/24"
 
 ###
@@ -47,6 +47,7 @@ if($args[0] -eq $null){
 	Add-DnsServerResourceRecordPtr -Name "xubuntu-wan" -ZoneName "17.0.10.in-addr.arpa" -AllowUpdateAny -AgeRecord -PtrDomainName "campbell.local"
 	
 	## DC01 ##
+	Add-DnsServerResourceRecordA -Name "dc1" -ZoneName "campbell.local" -AllowUpdateAny -IPv4Address "10.0.17.4" 
 	Add-DnsServerResourceRecordPtr -Name "dc1" -ZoneName "17.0.10.in-addr.arpa" -AllowUpdateAny -AgeRecord -PtrDomainName "campbell.local"
 	
 	# Enable RDP
