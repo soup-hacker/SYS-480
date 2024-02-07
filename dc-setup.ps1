@@ -64,7 +64,7 @@ if($args[0] -eq $null){
 
 	Add-DHCPServerv4Scope -Name “campbell.local” -StartRange 10.0.17.101 -EndRange 10.0.17.150 -SubnetMask 255.255.255.0 -State Active
 
-	Set-DHCPServerv4OptionValue -ScopeID 10.0.17.0 -DnsDomain campbell.local -DnsServer 10.0.17.2 -Router 10.0.17.2
+	Set-DHCPServerv4OptionValue -ScopeID 10.0.17.0 -DnsDomain campbell.local -DnsServer 10.0.17.4 -Router 10.0.17.2
 
 	Add-DhcpServerInDC -DnsName campbell.local -IpAddress 10.0.17.4
 
