@@ -1,0 +1,8 @@
+{
+    "venter_server" : "vcenter-480.campbell.local",
+    "vm_folder" : "BASEVMS",
+    "esxi_host" : "192.168.7.14",
+    "default_network" : "480-WAN",
+    "default_datastore" : "datastore1-super4",
+    "snapshot" : "BASE"
+}
