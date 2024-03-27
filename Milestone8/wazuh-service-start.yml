@@ -1,0 +1,18 @@
+- name: Wazuh Server Service Start
+  hosts: wazuh-server
+  tasks:
+    - name: azuh-indexer-performance-analyzer.service
+      shell: "systemctl enable wazuh-indexer-performance-analyzer.service && systemctl start wazuh-indexer-performance-analyzer.service"
+      become: yes
+
+    - name: Start wazuh-manager.service
+      shell: "systemctl enable wazuh-manager.service && systemctl start wazuh-manager.service"
+      become: yes
+
+    - name: Start wazuh-dashboard.service
+      shell: "systemctl enable wazuh-dashboard.service && systemctl start wazuh-dashboard.service"
+      become: yes
+
+    - name: Start wazuh-indexer.service 
+      shell: "systemctl enable wazuh-indexer.service  && systemctl start wazuh-indexer.service"
+      become: yes

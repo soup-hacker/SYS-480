@@ -1,0 +1,39 @@
+- name: Wazuh Server Config
+  hosts: wazuh-server
+  tasks:
+    - name: Get the Wazah Install Script
+      shell: "curl -sO https://packages.wazuh.com/4.3/wazuh-install.sh"
+      become: yes
+    
+    - name: Run the install script
+      shell: "bash ./wazuh-install.sh -a -i && cd /home/{{ ansible_user }}/"
+      become: yes
+
+    - name: get the users passwords
+      shell: "sudo tar -O -xvf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt"
+      register: passwords
+    - debug: msg="{{ passwords.stdout }}"
+      become: yes
+
+    - name: azuh-indexer-performance-analyzer.service
+      shell: "systemctl enable wazuh-indexer-performance-analyzer.service && systemctl start wazuh-indexer-performance-analyzer.service"
+      become: yes
+
+    - name: Start wazuh-manager.service
+      shell: "systemctl enable wazuh-manager.service && systemctl start wazuh-manager.service"
+      become: yes
+
+    - name: Start wazuh-dashboard.service
+      shell: "systemctl enable wazuh-dashboard.service && systemctl start wazuh-dashboard.service"
+      become: yes
+
+    - name: Start wazuh-indexer.service 
+      shell: "systemctl enable wazuh-indexer.service  && systemctl start wazuh-indexer.service"
+      become: yes
+
+  
+    - name: reboot the box
+      shell: "sleep 5 && reboot"
+      become: yes
+      async: 1
+      poll: 0
